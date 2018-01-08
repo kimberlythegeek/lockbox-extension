@@ -1,5 +1,3 @@
-from axe_selenium_python import Axe
-
 """Tests for lockbox extension."""
 
 
@@ -45,17 +43,3 @@ def test_door_hanger_interaction(home_page, selenium, base_url):
     assert '(no site name)' in lists[0].title
     entry = lists[0].click()
     assert '' in entry.title
-
-
-def test_accessibility_login_page(login_page):
-    """Test login page for accessibility violations."""
-    axe = Axe(login_page.selenium)
-    violations = axe.run()
-    assert len(violations) == 0, axe.report(violations)
-
-def test_accessibility_home_page(login_page):
-    """Test home page for accessibility violations."""
-    home_page = login_page.click_get_started()
-    axe = Axe(home_page.selenium)
-    violations = axe.run()
-    assert len(violations) == 0, axe.report(violations)
