@@ -46,6 +46,12 @@ def home_page(login_page):
     return login_page.click_get_started()
 
 
+@pytest.fixture
+def home_page_keyboard(login_page):
+    """Login to Lockbox using keyboard navigation."""
+    return login_page.tab_to_get_started()
+
+
 @pytest.fixture(scope='session')
 def fxa_account(base_url):
     """Create fxa account."""
