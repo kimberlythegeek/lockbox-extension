@@ -2,15 +2,19 @@
 
 from pypom import Region
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base import Base
 from pages.util.util import munged_class_name
 
+import time
+
 
 class Home(Base):
     """Contain the locators and actions relating to the home page."""
 
+    _root_level_locator = (By.TAG_NAME, 'html')
     _modal_portal_locator = (By.CLASS_NAME, 'ReactModalPortal')
     _entries_locator = (By.CSS_SELECTOR,
                         'ul li div.{}'.format(
@@ -41,8 +45,8 @@ class Home(Base):
 
     def wait_for_page_to_load(self):
         """Wait for page to load."""
-        self.wait.until(
-            lambda s: s.find_element(*self._modal_portal_locator))
+        # self.wait.until(
+        #     lambda s: s.find_element(*self._modal_portal_locator))
         return self
 
     @property
@@ -55,6 +59,26 @@ class Home(Base):
         current_entries = len(self.entries)
         self.find_element(*self._new_entry_locator).click()
         self.find_element(*self._save_entry_locator).click()
+        self.wait.until(lambda _: len(self.entries) != current_entries)
+
+    def add_entry_using_keyboard(self):
+        """Add an entry into the lockbox."""
+        current_entries = len(self.entries)
+        elem = self.find_element(*self._root_level_locator)
+        # Tab until "New Entry" button is focused
+        elem.send_keys(Keys.TAB)
+        print(self.selenium.switch_to.active_element.is_selected())
+        time.sleep(600)
+        while self.find_element(*self._new_entry_locator).is_selected is False:
+            elem.send_keys(Keys.TAB)
+        # Activate "New Entry" button
+        elem.send_keys(Keys.ENTER)
+        time.sleep(600)
+        # Tab until "Create Entry" button is focused
+        while self.find_element(*self._save_entry_locator).is_selected is False:
+            elem.send_keys(Keys.TAB)
+        # Activate "Create Entry" button
+        elem.send_keys(Keys.ENTER)
         self.wait.until(lambda _: len(self.entries) != current_entries)
 
     def delete_entry(self):
@@ -74,7 +98,7 @@ class Home(Base):
     def sign_in_button_is_displayed(self):
         """Check if sign in button is displayed."""
         try:
-            self.find_elements(*self._sign_in_locator)[-1]
+            self.find_elements(*self._sign_in_locator)
         except Exception:
             return False
         return True
