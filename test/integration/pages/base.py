@@ -1,6 +1,6 @@
 """Base class for common use locators and actions."""
 
-from pypom import Page
+from pypom_axe import AxePage as Page
 
 
 class Base(Page):
