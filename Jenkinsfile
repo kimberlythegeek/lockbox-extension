@@ -24,15 +24,12 @@ pipeline {
         ansiColor('xterm') {
           sh """
             pip install -r requirements/flake8.txt
-            python -m flake8
+            flake8
             """
         }
       }
     }
-    stage('Test') {
-      environment {
-        SAUCELABS = credentials('SAUCELABS')
-      }
+    stage('Accessibility') {
       steps {
         unstash 'workspace'
         ansiColor('xterm') {
@@ -41,7 +38,27 @@ pipeline {
             git init
             npm run package
             mkdir results
-            tox -e sauce
+            tox -e a11y
+            """
+        }
+      }
+      post {
+        always {
+          stash includes: 'results/*', name: 'results'
+          archiveArtifacts 'results/*'
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        unstash 'workspace'
+        ansiColor('xterm') {
+          sh """
+            npm install
+            git init
+            npm run package
+            mkdir results
+            tox -e py3-integration-tests
             """
         }
       }

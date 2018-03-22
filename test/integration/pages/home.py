@@ -1,11 +1,11 @@
 """Representation of the Home page for lockbox."""
 
-from pypom import Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base import Base
 from pages.util.util import munged_class_name
+from pypom import Region
 
 
 class Home(Base):
@@ -26,7 +26,7 @@ class Home(Base):
     _new_entry_locator = (By.CSS_SELECTOR,
                           'section menu '
                           'button.{}:nth-child(1)'.format(
-                            munged_class_name('button')))
+                              munged_class_name('button')))
     _sign_in_locator = (By.CSS_SELECTOR, '.{} .{}'.format(
                         munged_class_name('link'),
                         munged_class_name('puffy-size')))
@@ -113,11 +113,11 @@ class Entry(Region):
         _delete_entry_locator = (By.CSS_SELECTOR,
                                  'article div menu '
                                  'button.{}:nth-child(2)'.format(
-                                    munged_class_name('button')))
+                                     munged_class_name('button')))
         _delete_entry_modal_locator = (By.CSS_SELECTOR,
                                        '.ReactModal__Content--after-open '
                                        'menu button.{}'.format(
-                                        munged_class_name('button')))
+                                           munged_class_name('button')))
         _title_locator = (By.CLASS_NAME, '{}'.format(
                           munged_class_name('first-label')))
         _title_text_locator = (By.CLASS_NAME, '{}'.format(
