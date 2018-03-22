@@ -6,12 +6,14 @@ from axe_selenium_python.axe import run_axe
 
 
 @pytest.mark.accessiblity
+@pytest.mark.xfail
 def test_login_page_accessibility(login_page):
     """Test login page for accessibility."""
     run_axe(login_page)
 
 
 @pytest.mark.accessiblity
+@pytest.mark.xfail
 def test_home_page_guest_accessiblity(login_page):
     """Test guest home page for accessiblity."""
     home_page = login_page.click_get_started()
@@ -19,6 +21,7 @@ def test_home_page_guest_accessiblity(login_page):
 
 
 @pytest.mark.accessiblity
+@pytest.mark.xfail
 def test_home_page_logged_in_accessibility(fxa_account, login_page):
     """Test logged in home page for accessiblity."""
     fxa = fxa_account
