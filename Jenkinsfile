@@ -14,6 +14,13 @@ pipeline {
       steps {
         deleteDir()
         checkout scm
+        ansiColor('xterm') {
+          sh """
+            npm install
+            git init
+            npm run package
+            """
+        }
         stash 'workspace'
       }
     }
@@ -22,10 +29,7 @@ pipeline {
         deleteDir()
         unstash 'workspace'
         ansiColor('xterm') {
-          sh """
-            pip install -r requirements/flake8.txt
-            flake8
-            """
+          sh "tox -e flake8"
         }
       }
     }
@@ -34,9 +38,6 @@ pipeline {
         unstash 'workspace'
         ansiColor('xterm') {
           sh """
-            npm install
-            git init
-            npm run package
             mkdir results
             tox -e a11y
             """
@@ -53,13 +54,7 @@ pipeline {
       steps {
         unstash 'workspace'
         ansiColor('xterm') {
-          sh """
-            npm install
-            git init
-            npm run package
-            mkdir results
-            tox -e py3-integration-tests
-            """
+          sh "tox -e py3-integration-tests"
         }
       }
       post {

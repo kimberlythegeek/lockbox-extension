@@ -1,2 +1,2 @@
--r test.txt
+-r tests.txt
 axe_selenium_python
