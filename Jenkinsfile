@@ -54,7 +54,7 @@ pipeline {
       steps {
         unstash 'workspace'
         ansiColor('xterm') {
-          sh "tox -e py3-integration-tests"
+          sh "tox -e py3"
         }
       }
       post {
