@@ -1,11 +1,11 @@
 """Representation of the Home page for lockbox."""
 
+from pypom import Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base import Base
 from pages.util.util import munged_class_name
-from pypom import Region
 
 
 class Home(Base):

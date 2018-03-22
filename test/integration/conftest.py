@@ -3,8 +3,8 @@
 import os
 
 import pytest
-
 from fxapom.fxapom import PROD_URL, FxATestAccount
+
 from pages.login import Login
 
 

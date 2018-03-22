@@ -1,9 +1,9 @@
 """Door hanger interaction functions."""
 
+from pypom import Region
 from selenium.webdriver.common.by import By
 
 from pages.util.util import munged_class_name
-from pypom import Region
 
 
 class DoorHanger(Region):
