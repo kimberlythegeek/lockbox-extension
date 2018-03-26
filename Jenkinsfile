@@ -1,12 +1,5 @@
 #!/usr/bin/env groovy
 
-/** Desired capabilities */
-def capabilities = [
-  browserName: 'Firefox',
-  version: '58.0',
-  platform: 'Windows 10'
-]
-
 pipeline {
   agent any
   stages {
