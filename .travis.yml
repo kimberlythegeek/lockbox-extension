@@ -40,6 +40,24 @@ jobs:
     - stage:
       language: python
       python: 3.6
+      addons:
+        firefox: latest-nightly
+      apt:
+        packages:
+          - jwm
+      env: TOXENV=integration-tests MOZ_HEADLESS=1 GECKODRIVER=0.19.1
+      install:
+        - nvm install node
+        - pip install tox
+      before_script:
+        - npm install
+        - npm run package
+      script: tox -e a11y
+      after_success: skip
+      before_deploy: skip
+    - stage:
+      language: python
+      python: 3.6
       env: TOXENV=flake8
       install:
         - pip install tox
