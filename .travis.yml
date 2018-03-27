@@ -45,7 +45,7 @@ jobs:
       apt:
         packages:
           - jwm
-      env: TOXENV=integration-tests MOZ_HEADLESS=1 GECKODRIVER=0.19.1
+      env: TOXENV=accessibility MOZ_HEADLESS=1 GECKODRIVER=0.19.1
       install:
         - nvm install node
         - pip install tox
