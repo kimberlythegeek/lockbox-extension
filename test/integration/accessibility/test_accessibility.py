@@ -1,7 +1,7 @@
 """Test Lockbox for accessibility violations."""
 
 import pytest
-from axe_selenium_python.axe import run_axe
+from pytest_axe.pytest_axe import run_axe
 
 
 @pytest.mark.accessibility
