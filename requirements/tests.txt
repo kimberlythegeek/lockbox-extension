@@ -4,5 +4,5 @@ pytest==3.4.2
 pytest-selenium==1.11.4
 pytest-xdist==1.22.2
 selenium==3.11.0
+axe-selenium-python==2.0.1
 git+git://github.com/kimberlythegeek/pytest-axe.git@64_separate_axe_core
-git+git://github.com/kimberlythegeek/axe-selenium-python.git@64_separate_axe_core
