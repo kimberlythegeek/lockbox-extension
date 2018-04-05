@@ -10,4 +10,4 @@ def test_door_hanger_interaction(fxa_account, login_page):
     lists = home_page.door_hanger.find_entrys()
     assert '(no site name)' in lists[0].title
     entry = lists[0].click()
-    assert 'Tuna, Inc.' in entry.title
+    assert '' in entry.title
