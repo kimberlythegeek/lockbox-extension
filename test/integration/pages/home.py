@@ -30,7 +30,8 @@ class Home(Base):
     _sign_in_locator = (By.CSS_SELECTOR, '.{} .{}'.format(
                         munged_class_name('link'),
                         munged_class_name('puffy-size')))
-    _account_dropdown_locator = (By.CSS_SELECTOR, 'section menu div button:first-child')
+    _account_dropdown_locator = (By.CSS_SELECTOR,
+                                 'section menu div button:first-child')
     _entry_list_locator = (By.CSS_SELECTOR, 'section aside')
 
     @property
@@ -119,7 +120,8 @@ class Entry(Region):
         """Entry detail locators and functions."""
 
         _entry_detail_locator = (By.CSS_SELECTOR, 'section article')
-        _edit_entry_locator = (By.CSS_SELECTOR, 'article div div menu button:first-child')
+        _edit_entry_locator = (By.CSS_SELECTOR,
+                               'article div div menu button:first-child')
         _delete_entry_locator = (By.CSS_SELECTOR,
                                  'article div menu '
                                  'button.{}:nth-child(2)'.format(

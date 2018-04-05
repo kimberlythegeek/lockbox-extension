@@ -20,19 +20,20 @@ def test_login_page_accessibility(login_page):
     """Test login page for accessibility violations."""
     run_axe(login_page, None, None, 'critical')
 
-
+@pytest.mark.xfail(reason="Search entries input is missing label.")
 @pytest.mark.accessibility
 def test_home_page_accessibility(home_page):
     """Test home page for accessibility violations."""
     run_axe(home_page, None, None, 'critical')
 
-
+@pytest.mark.xfail(reason="Account avatar img is missing alt text.")
 @pytest.mark.accessibility
 def test_account_dropdown_accessibility(fxa_account, login_page):
     """Test home page when logged in for accessibility violations."""
     fxa = fxa_account
     home_page = login_page.sign_in(fxa.email, fxa.password)
-    run_axe(home_page, home_page._account_dropdown_locator[1], None, 'critical')
+    run_axe(home_page, home_page._account_dropdown_locator[1],
+            None, 'critical')
 
 
 @pytest.mark.accessibility
@@ -42,6 +43,7 @@ def test_entry_detail_accessibility(home_page):
     run_axe(home_page, entry._entry_detail_locator[1], None, 'critical')
 
 
+@pytest.mark.xfail(reason="Search entries input is missing label.")
 @pytest.mark.accessibility
 def test_entry_list_accessibility(home_page):
     """Test entry list for accessibility."""
