@@ -20,11 +20,13 @@ def test_login_page_accessibility(login_page):
     """Test login page for accessibility violations."""
     run_axe(login_page, None, None, 'critical')
 
+
 @pytest.mark.xfail(reason="Search entries input is missing label.")
 @pytest.mark.accessibility
 def test_home_page_accessibility(home_page):
     """Test home page for accessibility violations."""
     run_axe(home_page, None, None, 'critical')
+
 
 @pytest.mark.xfail(reason="Account avatar img is missing alt text.")
 @pytest.mark.accessibility
